@@ -29,36 +29,45 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.daedricknight.artem.quantumengine;
+package com.daedricknight.artem.quantumengine
 
-import com.daedricknight.artem.quantumengine.ventiles.Program;
-import com.daedricknight.artem.quantumengine.ventiles.Step;
-import com.daedricknight.artem.quantumengine.ventiles.gate.Hadamard;
-import com.daedricknight.artem.quantumengine.ventiles.gate.Identity;
+import com.daedricknight.artem.quantumengine.ventiles.Program
+import com.daedricknight.artem.quantumengine.ventiles.Step
+import com.daedricknight.artem.quantumengine.ventiles.gate.Hadamard
+import com.daedricknight.artem.quantumengine.ventiles.gate.Identity
+import junit.framework.TestCase
+import org.junit.Test
 
-import org.junit.Test;
-
-import static junit.framework.TestCase.assertTrue;
-
-public class SyntaxTests {
-
+class SyntaxTests {
     @Test
-    public void simpleIGate() {
-        Program p = new Program(1);
-        Step s = new Step(new Identity(0));
-        boolean gotException = false;
+    fun simpleIGate() {
+        val p = Program(1)
+        val s =
+            Step(
+                Identity(0)
+            )
+        var gotException = false
         try {
-            s.addGate(new Hadamard(0));
-        } catch (IllegalArgumentException ex) {
-            gotException = true;
+            s.addGate(Hadamard(0))
+        } catch (ex: IllegalArgumentException) {
+            gotException = true
         }
-        assertTrue(gotException);
+        TestCase.assertTrue(gotException)
     }
 
     @Test
-    public void testNamedStep() {
-        Step s0 = new Step("Hello!");
-        Step s1 = new Step("foo", new Identity(0));
-        Step s2 = new Step(new Identity(0), new Identity(1));
+    fun testNamedStep() {
+        val s0 =
+            Step("Hello!")
+        val s1 =
+            Step(
+                "foo",
+                Identity(0)
+            )
+        val s2 =
+            Step(
+                Identity(0),
+                Identity(1)
+            )
     }
 }
