@@ -41,7 +41,7 @@ import org.junit.Test
 class SyntaxTests {
     @Test
     fun simpleIGate() {
-        val p = Program(1)
+        Program(1)
         val s =
             Step(
                 Identity(0)
@@ -57,17 +57,14 @@ class SyntaxTests {
 
     @Test
     fun testNamedStep() {
-        val s0 =
-            Step("Hello!")
-        val s1 =
-            Step(
-                "foo",
-                Identity(0)
-            )
-        val s2 =
-            Step(
-                Identity(0),
-                Identity(1)
-            )
+        Step("Hello!")
+        Step(
+            "foo",
+            Identity(0)
+        )
+        Step(
+            Identity(0),
+            Identity(1)
+        )
     }
 }
