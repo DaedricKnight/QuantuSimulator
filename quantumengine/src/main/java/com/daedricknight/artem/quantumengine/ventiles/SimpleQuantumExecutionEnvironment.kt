@@ -63,7 +63,7 @@ class SimpleQuantumExecutionEnvironment : QuantumExecutionEnvironment {
                 val div = i / pt
                 val md = div % 2
                 if (md == 0) {
-                    probs[i] = probs[i]?.mult(initalpha[j])
+                    probs[i]?.mult(initalpha[j])?.let { probs[i] = it }
                 } else {
                     probs[i] = probs[i]!!
                         .mult(Math.sqrt(1 - initalpha[j] * initalpha[j]))
@@ -143,7 +143,7 @@ class SimpleQuantumExecutionEnvironment : QuantumExecutionEnvironment {
         for (i in vector.indices) {
             result[i] = zero()
             for (j in vector.indices) {
-                result[i] = a[i][j]?.mult(vector[j]!!)?.let { result[i]?.add(it) }
+                result[i] = a[i][j]?.mult(vector[j]!!)?.let { result[i]?.add(it) } as Complex
             }
         }
         return result
